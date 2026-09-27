@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+<title>FoundersFeed — Shorts for Builders</title>
+<meta name="description" content="A daily-curated feed of YouTube Shorts for founders and entrepreneurs. No signup. No noise." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="loading-screen">
+    <div class="loader-rocket">🚀</div>
+    <p>Loading today's feed…</p>
+  </div>
+
+  <div id="feed" class="feed" hidden></div>
+
+  <!-- top bar -->
+  <div class="topbar">
+    <span class="brand">Founders<span class="brand-accent">Feed</span></span>
+    <span id="update-badge" class="update-badge"></span>
+  </div>
+
+  <!-- swipe-up hint (first load only) -->
+  <div id="swipe-hint" class="swipe-hint" hidden>
+    <div class="chev">⌃</div>
+    <span>Swipe up for more</span>
+  </div>
+
+  <div id="empty-state" class="empty-state" hidden>
+    <p>Couldn't load today's shorts.</p>
+    <button id="retry-btn">Retry</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

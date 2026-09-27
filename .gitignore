@@ -1,0 +1,14 @@
+node_modules/
+.firebase/
+/.agents/
+/.claude/
+/skills-lock.json
+/index.html
+/404.html
+firebase-debug.log
+firebase-debug.*.log
+*.log
+.DS_Store
+.env
+.env.*
+.vscode/

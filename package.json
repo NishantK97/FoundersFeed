@@ -1,0 +1,13 @@
+{
+  "name": "founders-feed",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily-curated YouTube Shorts feed for founders and entrepreneurs.",
+  "scripts": {
+    "curate": "node scripts/curate.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

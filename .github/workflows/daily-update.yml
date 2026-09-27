@@ -1,0 +1,43 @@
+name: Daily Shorts Update
+
+# 00:00 IST = 18:30 UTC the previous day (IST is UTC+5:30, no DST)
+on:
+  schedule:
+    - cron: "30 18 * * *"
+  workflow_dispatch: {} # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run curation script
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/curate.js
+
+      - name: Commit updated shorts.json
+        run: |
+          git config user.name "foundersfeed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/data/shorts.json data/archive.json
+          git diff --cached --quiet || git commit -m "chore: daily shorts update $(date -u +%F)"
+          git push
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: founders-feed-d38f4
+          channelId: live
